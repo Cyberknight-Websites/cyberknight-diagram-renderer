@@ -20,7 +20,9 @@ structure, colors, and layout. You MUST follow it EXACTLY.
 - Every box is a rounded rectangle with 8px corner radius.
 - Every box has a 2px solid stroke in the color of its parent zone's
   border, unless the user specifies a different box border color.
-- Box fill is white unless the user specifies otherwise.
+- Box fill is #FAFBFC (the diagram background color) unless the user
+  explicitly specifies a different fill. Sub-boxes inside zones or
+  containers MUST NOT inherit the parent zone's fill color.
 - Inside each box:
   - A small flat icon (24×24px equivalent) is placed at the LEFT edge,
     vertically centered, with 12px padding from the left border.
@@ -41,11 +43,16 @@ structure, colors, and layout. You MUST follow it EXACTLY.
   - Text: white, bold, 12px sans-serif.
   - Padding: 6px 16px.
   - The pill slightly overlaps the zone border (half inside, half outside).
+  - When the user specifies an icon for a zone (e.g. "icon: debian"), the
+    zone label pill includes a small flat icon to the left of the text.
+    The icon is the same color as the pill text (white).
 
 === CONTAINER SPECIFICATION (nested boxes, e.g. Docker containers) ===
 - A container is a rounded rectangle with 10px radius.
 - It has a thick 3px border in the user's specified color.
 - It has a pale fill in the user's specified color.
+- Container fill MUST be a distinctly different tint from its parent zone
+  fill (at least 15% lighter or darker) so nested structure is visually clear.
 - Container title is at top-left in bold, with a small icon beside it.
 - Inside the container, child boxes are stacked vertically with 12px gaps.
   Each child follows the BOX SPECIFICATION above.
@@ -55,14 +62,23 @@ structure, colors, and layout. You MUST follow it EXACTLY.
 - Within a row, zones are laid out left-to-right with equal spacing.
 - Within a zone, cards are laid out according to the user's description
   (horizontal flow, vertical stack, or grid).
+- When the user describes zones as "separate" or "below" or "outside"
+  another zone, they MUST be rendered as visually distinct, independent
+  zones with clear gaps between them. NEVER nest one zone inside another
+  unless the user explicitly says "inside" or "containing".
 - The entire composition is centered on the canvas with comfortable
   margins (minimum 40px from all edges).
 - All elements are aligned to an invisible 8px grid.
 
 === ICON SPECIFICATION ===
 - Icons are simple, flat, single-color vector-style marks.
-- Icon color matches the box border color unless the user specifies
-  a brand color (e.g., Google multicolor "G", Chrome circle).
+- Icons representing well-known brands or technologies (e.g., Docker,
+  Python, Ruby, Jekyll, Chrome, GitHub, Doppler, AWS, Azure, Cloudflare,
+  OpenAI, Anthropic, Google, Debian, NGINX) MUST use their correct
+  authentic brand colors. NEVER tint, recolor, or desaturate a brand
+  icon to match the box border or zone color.
+- Generic icons (shield, lightning, cylinder, lambda, envelope, globe,
+  eye) may use the box border color.
 - Icons are never photorealistic or 3D.
 
 === USER DESCRIPTION ===
