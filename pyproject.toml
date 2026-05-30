@@ -1,0 +1,23 @@
+[project]
+name = "cyberknight-diagram-renderer"
+version = "1.0.0"
+description = "Cyberknight architecture diagram renderer via Nano Banana Pro / OpenRouter"
+requires-python = ">=3.10"
+authors = [
+    { name = "Cyberknight Websites" },
+]
+license = { text = "MIT" }
+readme = "README.md"
+dependencies = [
+    "requests>=2.32",
+]
+
+[project.scripts]
+cyberknight-diagram-render = "diagram_renderer.cli:main"
+
+[tool.setuptools.packages]
+find = {}
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
